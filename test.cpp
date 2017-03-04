@@ -81,7 +81,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	//////////////////////////////////////////////////////////////////////////
 	//return run_timer();
 
-	//return run_tcp_client();
+	return run_tcp_client();
 	//return run_tcp_server();
 
 	//return run_udp();
@@ -97,6 +97,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	//return run_process();
 	//return run_threadpool();
 	//return run_file_poll();
-	return run_file_event();
+	//return run_file_event();
 }
 

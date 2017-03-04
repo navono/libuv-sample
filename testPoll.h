@@ -13,7 +13,7 @@ void on_poll_cb(uv_poll_t* poll, int status, int events) {
 	if (_memicmp(buffer, "Q", 1) == 0) {
 		uv_poll_stop(poll);
 		closesocket(*sock);
-		printf("poll exit\n", buffer);
+		printf("poll exit\n");
 		
 		// crash
 		//uv_close((uv_handle_t*) &poll, on_poll_close);

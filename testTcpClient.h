@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <functional>
 
 
 uv_tcp_t *client;
@@ -50,9 +51,23 @@ int run_tcp_client()
 	
 	sockaddr_in addr;
 	uv_ip4_addr("127.0.0.1", 8888, &addr);
+
+
+
+	static auto/*static std::function<void(uv_connect_t* req, int status)>*/ connect_bounce
+		= [&](uv_connect_t* req, int status) {
+		uv_read_start((uv_stream_t*)req->handle, on_alloc, on_read);
+	};
+
+	auto connect_cb = [](uv_connect_t* req, int status) {
+		connect_bounce(req, status);
+	};
+
+
 	
 	con_req.data = client;	// private data
-	uv_tcp_connect(&con_req, client, (const sockaddr*)&addr, on_connect);
+	//uv_tcp_connect(&con_req, client, (const sockaddr*)&addr, on_connect);
+	uv_tcp_connect(&con_req, client, (const sockaddr*)&addr, connect_cb);
 
 	return uv_run(&loop, UV_RUN_DEFAULT);
 }

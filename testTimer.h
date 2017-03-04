@@ -19,7 +19,7 @@ void on_timer(uv_timer_t* handle)
 	{
 		++counter;
 		auto now = GetTickCount64();
-		printf("on_timer: %d	elapsed: %d\n", counter, now - tickCount);
+		printf("on_timer: %d	elapsed: %I64d\n", counter, now - tickCount);
 		tickCount = now;
 	}
 }

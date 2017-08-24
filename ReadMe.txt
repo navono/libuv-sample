@@ -1,2 +1,2 @@
 
-a simple sample of libuv library.
+a sample of libuv library.
